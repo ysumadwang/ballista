@@ -204,6 +204,20 @@ input, textarea, select{
   background-color: #EEE;
 }
 
+.search_filter_form div{
+  margin: 0px 0px 16px 0px;
+  padding: 0px;
+}
+
+.search_filter_form #tag_filter{
+  font-size: 100%;
+  padding: 1px;
+  -moz-box-shadow: inset 0px 2px 1px #aaa;
+  -webkit-box-shadow: inset 0px 2px 1px #aaa;
+  box-shadow: inset 1px 1px 1px #aaa;
+  text-shadow: 0px;
+}
+
 #flashHolder{
   background-color: #003d4c;
   height: 20px;
@@ -550,22 +564,4 @@ input, textarea, select{
 
 table.collapsed {
   display: none;
-}
-
-h2.projects {
-  background: lightsteelblue;
-  font-size: 100%;
-  font-weight: bold;
-  padding: 6px;
-  color: white;
-  cursor: pointer;
-  padding-left: 17px;
-}
-
-.projects.plus {
-  background: lightslategray url(../img/bullet_toggle_plus.png) no-repeat left;
-}
-
-.projects.minus {
-  background: lightslategray url(../img/bullet_toggle_minus.png) no-repeat left;
 }

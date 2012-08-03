@@ -64,27 +64,29 @@ class ProjectsController extends AppController {
    */
   function index() {
     $this->Project->recursive = 0;
+    
+    $this->paginate = array(
+      'fields' => array('Project.*, Tag.tag'),
+      'order' => array('Project.name' => 'asc'), 
+      'joins' => array('LEFT JOIN projects_tags ProjectsTags on ProjectsTags.project_id = Project.id LEFT JOIN tags Tag on Tag.id = ProjectsTags.tag_id'),
+      'order' => array('Project.name' => 'asc'), 
+    );
+
     // If admin user show all projects, else check for permissions
-    if ($this->Session->read('User.admin') == 1) {
-      $this->paginate = array(
-        'fields' => array('Project.*, Tag.tag'),
-        'order' => array('Project.name' => 'asc'), 
-        'joins' => array('LEFT JOIN projects_tags ProjectsTags on ProjectsTags.project_id = Project.id LEFT JOIN tags Tag on Tag.id = ProjectsTags.tag_id'),
-        'order' => array('Tag.tag' => 'asc', 'Project.name' => 'asc'), 
-        'limit' => 100
-      );
-    } else {
+    if ($this->Session->read('User.admin') != 1) {
       $allowed_projects = array_keys($this->Session->read('User.permissions'));
-      $this->paginate = array(
-        'fields' => array('Project.*, Tag.tag'),
-        'conditions' => array('Project.id' => $allowed_projects), 
-        'order' => array('Project.name' => 'asc'), 
-        'joins' => array('LEFT JOIN projects_tags ProjectsTags on ProjectsTags.project_id = Project.id LEFT JOIN tags Tag on Tag.id = ProjectsTags.tag_id'),
-        'order' => array('Tag.tag' => 'asc', 'Project.name' => 'asc'), 
-        'limit' => 100
-      );
+      $this->paginate['conditions']['Project.id'] = $allowed_projects;
     }
-    $this->set('projects', $this->paginate());
+
+    if (!empty($this->params['named']['tag'])) {
+      $this->paginate['conditions']['Tag.id'] = $this->params['named']['tag'];
+    }
+    $this->paginate['limit'] = 100;
+
+    $projects = $this->paginate();
+    $tags = $this->Project->Tag->find('list');
+    
+    $this->set(compact('projects', 'tags'));
   }
 
   /**
