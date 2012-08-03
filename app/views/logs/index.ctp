@@ -1,5 +1,15 @@
 <div class="logs index">
-  <h2><?php __('Logs');?><?php if (!empty($this->params['pass'][0])) { echo ': '.$projects[$this->params['pass'][0]]; } ?></h2>
+  <h2><?php __('Logs');?><?php 
+  if (!empty($this->params['pass'][0])) {
+   echo ': ';  
+   echo $this->Html->link(
+            $projects[$this->params['pass'][0]],
+            array('controller' => 'instances', 'action' => 'deploy', $this->params['pass'][0], Configure::read('Ballista.master')),
+            array('escape' => false, 'class' => 'redeploy_link')
+   ); 
+  } 
+  ?></h2>
+
   <table cellpadding="0" cellspacing="0">
   <tr>
     <th>Project</th>

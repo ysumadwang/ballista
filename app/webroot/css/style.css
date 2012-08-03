@@ -491,6 +491,10 @@ input, textarea, select{
   margin-top: 8px;
 }
 
+.redeploy_link{
+  font-weight: normal;  
+}
+
 #InstanceExecuteForm input[type="checkbox"]{
   float: none;
 }
