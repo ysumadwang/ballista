@@ -66,9 +66,7 @@ class ProjectsController extends AppController {
     $this->Project->recursive = 0;
     
     $this->paginate = array(
-      'fields' => array('Project.*, Tag.tag'),
-      'order' => array('Project.name' => 'asc'), 
-      'joins' => array('LEFT JOIN projects_tags ProjectsTags on ProjectsTags.project_id = Project.id LEFT JOIN tags Tag on Tag.id = ProjectsTags.tag_id'),
+      'fields' => array('Project.*'),
       'order' => array('Project.name' => 'asc'), 
     );
 
@@ -79,7 +77,10 @@ class ProjectsController extends AppController {
     }
 
     if (!empty($this->params['named']['tag'])) {
+      $this->paginate['fields'] = array('Project.*, Tag.tag');
       $this->paginate['conditions']['Tag.id'] = $this->params['named']['tag'];
+      $this->paginate['joins'] = array('LEFT JOIN projects_tags ProjectsTags on ProjectsTags.project_id = Project.id LEFT JOIN tags Tag on Tag.id = ProjectsTags.tag_id');
+      
     }
     $this->paginate['limit'] = 100;
 

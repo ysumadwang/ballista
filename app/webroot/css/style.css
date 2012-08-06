@@ -76,6 +76,10 @@ a:hover{
   padding: 10px 10px 40px 10px;
 }
 
+.clear {
+  clear: both;  
+}
+
 .info{
   margin-top: 20px;
   float: right;
@@ -204,9 +208,32 @@ input, textarea, select{
   background-color: #EEE;
 }
 
-.search_filter_form div{
+.search_filter_form{
+}
+
+.search_filter_form .input{
   margin: 0px 0px 16px 0px;
   padding: 0px;
+  float: left;  
+  clear: none;
+}
+
+.search_filter_form #project_filter{
+  font-size: 100%;
+  width: 320px;
+  padding: 4px;
+  color: #999;
+  -moz-box-shadow: inset 0px 2px 1px #aaa;
+  -webkit-box-shadow: inset 0px 2px 1px #aaa;
+  box-shadow: inset 1px 1px 1px #aaa;
+  text-shadow: 0px;
+  font-style: italic;
+}
+
+.search_filter_form #load_filter{
+  float: left;
+  margin: 10px 0px 0px -20px;
+  display: none;
 }
 
 .search_filter_form #tag_filter{
@@ -216,6 +243,7 @@ input, textarea, select{
   -webkit-box-shadow: inset 0px 2px 1px #aaa;
   box-shadow: inset 1px 1px 1px #aaa;
   text-shadow: 0px;
+  margin-left: 20px;
 }
 
 #flashHolder{
