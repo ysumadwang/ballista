@@ -98,23 +98,24 @@ class GitComponent extends Object {
   }
 
   /**
-   * Get last commit message of branch
+   * Get commit message of a commit
    *
    * @param string  $project  Name of the project in git
    * @param string  $path     Path to the project in the repository
    * @param string  $host     Type of hosting (Git or Local)
    * @param string  $branch   Name of the branch
-   *
+   * @param string  $commit   Commit ID
+   * 
    * @return string $output   Last commit message
    */
-  function getLastMessage($project, $path, $host, $branch) {
+  function getMessage($project, $path, $host, $branch, $commit) {
     if ($host == 'Github') {// Project hosted on Github
       $github = new Github_Client();
       $commits = $github->getCommitApi()->getBranchCommits(Configure::read('Ballista.githubAccount'), $project, $branch);
       $output = $commits[0]['message'];
     } else {// Project hosted on local server
       if (chdir($path)) {
-        exec('git log --format=%s -1 ' . $branch, $message);
+        exec('git log --format=%s ' . $commit . ' -1 ', $message);
       } else {
         $this->cakeError('missingPath');
       }

@@ -162,12 +162,18 @@ form .submit input[type=submit] {
   background:#62af56;
   background: -webkit-gradient(linear, left top, left bottom, from(#a8ea9c), to(#62af56));
   background-image: -moz-linear-gradient(top, #a8ea9c, #62af56);
+  -moz-box-shadow: inset 0px 0px 0px #aaa;
+  -webkit-box-shadow: inset 0px 0px 0px #aaa;
+  box-shadow: inset 0px 0px 0px #aaa;
 }
 
 form .submit input[type=submit]:hover {
   background:#4ca83d;
   background: -webkit-gradient(linear, left top, left bottom, from(#85e573), to(#4ca83d));
   background-image: -moz-linear-gradient(top, #85e573, #4ca83d);
+  -moz-box-shadow: inset 0px 0px 0px #aaa;
+  -webkit-box-shadow: inset 0px 0px 0px #aaa;
+  box-shadow: inset 0px 0px 0px #aaa;
 }
 
 input[type=submit],
@@ -253,6 +259,8 @@ input, textarea, select{
   
 #flashMessage{
   display: block;
+  color: #333;
+  background-color: #FFCC00;
   font-size: 100%;
   margin: 0px;
   padding: 0px;
@@ -260,7 +268,7 @@ input, textarea, select{
 }
 
 .highlight{
-  border: 1px solid #003D4C;
+  border: 1px solid #003d4c;
 }
 
 #instancesTable{

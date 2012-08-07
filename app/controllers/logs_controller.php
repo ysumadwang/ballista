@@ -128,11 +128,12 @@ class LogsController extends AppController {
 
         // If comment was specified, then copy comment to all instances, if not fetch and use last commit message as comment.
         if ($this->data['Comment'] == 'deploy comment' || $this->data['Comment'] == '') {
-          $this->data['Log'][$key]['comment'] = $this->Git->getLastMessage(
+          $this->data['Log'][$key]['comment'] = $this->Git->getMessage(
             $project[0]['projects']['name'], 
             $this->data['Path'], 
             $project[0]['projects']['host'], 
-            $this->data['Log'][$key]['branch']
+            $this->data['Log'][$key]['branch'],
+            $this->data['Log'][$key]['commit']
           );
         } else {
           $this->data['Log'][$key]['comment'] = $this->data['Comment'];
