@@ -165,7 +165,8 @@ class InstancesController extends AppController {
         'Instance.project_id' => $id, 
         'Instance.server_id' => $acl[$id], 
         'Instance.active' => 1
-      ), 
+      ),
+      'order' => array('Instance.id ASC'),
       'recursive' => 0
     ));
 
